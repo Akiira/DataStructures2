@@ -125,6 +125,8 @@ void Single_LinkedList<T>::Remove(const int index) {
 		temp->next = targetNode->next;
 		delete targetNode;
 	}
+
+	this->size--;
 }
 
 #endif // !defined(EA_83F147B5_A438_45bc_85CC_6420217608FE__INCLUDED_)
