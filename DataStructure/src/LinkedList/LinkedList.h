@@ -18,5 +18,9 @@ public:
 	virtual T Get(const int index) const =0;
 	virtual void Remove(const int index) =0;
 
+	int Size() const { return size; }
+
+protected:
+	unsigned int size;
 };
 #endif // !defined(EA_1891E4B1_2421_425e_AA06_F1D83A4E3CD2__INCLUDED_)

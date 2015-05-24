@@ -10,17 +10,35 @@
 
 #include "LinkedList.h"
 
+//Testing
+#include <iostream>
+
+template<class T>
 struct node {
-    int x;
+public:
+    T x;
+    node<T>* next;
+    node<T>* last;
+
+    node(T const &item) : node(item, nullptr, nullptr) { }
+    node(T const &item, node<T>* next) : node(item, nullptr, next) { }
+    node(T const &item, node<T>* last, node<T>* next) {
+    	x = item;
+    	this->last = last;
+    	this->next = next;
+    }
+
+    node<T>* Next() const { return next; }
+    node<T>* Last() const { return last; }
 };
 
 template<class T>
 class Pointer_LinkedList : public LinkedList<T>
 {
     
-private:
-	node* Front;
-	node* End;
+protected:
+	node<T>* front;
+	node<T>* end;
 
 };
 #endif // !defined(EA_1EDF8CE0_9497_4c76_9281_6D4347B57A6B__INCLUDED_)

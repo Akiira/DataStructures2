@@ -1,7 +1,7 @@
 #include "cute.h"
 #include "TestSuite_FixedLinkedList.h"
 #include "../Fixed_LinkedList.hpp"
-
+#include "../Single_LinkedList.hpp"
 
 void Append_EmptyList_NoExceptions() {
     Fixed_LinkedList<char> fll(2);
