@@ -36,7 +36,7 @@ class Fixed_LinkedList : public Array_LinkedList<T>
 template<class T>
 Fixed_LinkedList<T>::Fixed_LinkedList(const int maxSizeIn) : maxSize{maxSizeIn} {
     this->size = 0;
-    this->values = new T[maxSize];
+	this->values = new T[maxSize] { };
 }
 
 template<class T>
@@ -56,11 +56,10 @@ void Fixed_LinkedList<T>::Append(T const &item) {
 
 template<class T>
 void Fixed_LinkedList<T>::Prepend(T const &item) {
-
     if( this->size >= maxSize ) {
     	throw LinkedListException("Trying to prepend on a full linked list.");
     } else {
-    	memmove((void*)values+1, (void*)values, sizeof(T) * this->size);
+    	memmove((void*)(values+1), (void*)values, sizeof(T) * this->size);
 		values[0] = item;
 		this->size++;
     }
@@ -77,9 +76,20 @@ T Fixed_LinkedList<T>::Get(const int index) const {
 
 template<class T>
 void Fixed_LinkedList<T>::Remove(const int index) {
-    //TODO
-	if( this->size > index ) {
+    if( this->size == 0 ) {
+    	throw LinkedListException("Trying to remove from an empty linked list.");
+    }
 
+	if( index >= 0 && index < this->size ) {
+		void* destination = (void*)(values + index);
+		void* source = (void*)(values + index + 1);
+		int length = this->size - index;
+
+		memmove(destination, source, length);
+
+		this->size--;
+	} else {
+		throw LinkedListException("Invalid index used to remove item in linked list.");
 	}
 }
 

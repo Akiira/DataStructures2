@@ -51,10 +51,10 @@ void Prepend_NotEmptyNotFull_ItemInSlotOne() {
 
 void Prepend_Full_FullException() {
     Fixed_LinkedList<char> fll(2);
-    fll.Append('A');
-    fll.Append('B');
+    fll.Prepend('C');
+    fll.Prepend('B');
 
-    ASSERT_THROWS(fll.Prepend('C'), LinkedListException);
+    ASSERT_THROWS(fll.Prepend('A'), LinkedListException);
 }
 
 cute::suite make_suite_TestSuite_FixedLinkedList(){
