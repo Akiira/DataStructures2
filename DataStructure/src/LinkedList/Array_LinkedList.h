@@ -14,7 +14,9 @@ template<class T>
 class Array_LinkedList : public LinkedList<T>
 {   
     public:
-        int Size() const;
+        int Size() const {
+        	return size;
+        }
         
     protected:
         int size;
