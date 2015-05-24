@@ -61,13 +61,19 @@ void Single_LinkedList<T>::Append(T const &item) {
 
 template<class T>
 void Single_LinkedList<T>::Prepend(T const &item) {
-
+	if( this->size > 0 ) {
+		auto temp = this->front;
+		this->front = new node<T>(item, temp);
+		this->size++;
+	} else {
+		Append(item);
+	}
 }
 
 template<class T>
 T Single_LinkedList<T>::Get(const int index) const {
 	if( this->size == 0 ) {
-
+		throw LinkedListException("todo.");
 	} else if( index < 0 || index > this->size - 1 ) {
 		throw LinkedListException("Invalid index used in linked list.");
 	}
@@ -91,7 +97,34 @@ T Single_LinkedList<T>::Get(const int index) const {
 
 template<class T>
 void Single_LinkedList<T>::Remove(const int index) {
+	if( this->size == 0 ) {
+		throw LinkedListException("todo.");
+	} else if( index < 0 || index > this->size - 1 ) {
+		throw LinkedListException("Invalid index used in linked list.");
+	}
 
+	if( this->size == 1 ) { //One element so we must set front and end to null
+		delete this->front;
+		this->front = nullptr;
+		this->end = nullptr;
+	} else if( index == 0 ) { //Special handling of front element
+		auto temp = this->front;
+		this->front = this->front->next;
+		delete temp;
+	} else { //General case
+		int i = index - 1;
+		auto temp = this->front;
+
+		//Going to one before target
+		while(i) {
+			temp = temp->next;
+			i--;
+		}
+
+		auto targetNode = temp->next;
+		temp->next = targetNode->next;
+		delete targetNode;
+	}
 }
 
 #endif // !defined(EA_83F147B5_A438_45bc_85CC_6420217608FE__INCLUDED_)
