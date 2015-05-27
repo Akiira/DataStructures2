@@ -98,7 +98,7 @@ T Single_LinkedList<T>::Get(const int index) const {
 template<class T>
 void Single_LinkedList<T>::Remove(const int index) {
 	if( this->size == 0 ) {
-		throw LinkedListException("todo.");
+		throw LinkedListException("todo.");//TODO
 	} else if( index < 0 || index > this->size - 1 ) {
 		throw LinkedListException("Invalid index used in linked list.");
 	}

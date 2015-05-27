@@ -10,7 +10,7 @@
 
 #include "Array_LinkedList.h"
 
-template<class T>
+template<class T> //TODO come up with better name
 class Resizable_LinkedList : public Array_LinkedList<T>
 {
 
